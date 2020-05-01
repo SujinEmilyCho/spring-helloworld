@@ -68,6 +68,7 @@ public class UserTest {
                 formParam("name", name).
                 formParam("email", "brown@email.com").
                 formParam("age", 32).
+                formParam("anything", "haha").
         when().
                 post("/users/form").
         then().

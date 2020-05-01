@@ -33,7 +33,7 @@ public class UserController {
      * POST /users/form
      */
     @PostMapping("/users/form")
-    public String createUserWithForm(@ModelAttribute User user) {
+    public String createUserWithForm(User user) {
         return "Hello " + user.getName();
     }
 }

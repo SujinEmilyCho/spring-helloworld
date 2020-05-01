@@ -1,6 +1,5 @@
 package wooteco.helloworld.controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +30,11 @@ public class WelcomeController {
     /**
      * GET /welcome-user
      */
+    @ResponseBody
     @GetMapping("welcome-user")
-    public ResponseEntity welcomeUser() {
-        return ResponseEntity.ok(new User("브라운", "brown@email.com", 20));
+    public User welcomeUser() {
+        return new User("브라운", "brown@email.com", 20);
+//        return ResponseEntity.ok(new User("브라운", "brown@email.com", 20));
     }
 
     @GetMapping("/post-form")
