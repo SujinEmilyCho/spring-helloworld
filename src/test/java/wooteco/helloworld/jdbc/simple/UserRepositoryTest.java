@@ -61,12 +61,15 @@ public class UserRepositoryTest {
     @DisplayName("수정")
     @Test
     public void update() {
-        User savedUser = userRepository.save(new User(NAME));
-        savedUser.update(new User(NEW_NAME));
-        User updatedUser = userRepository.save(savedUser);
+        User savedUser = userRepository.save(new User(NAME));       // 브라운
+        savedUser.update(new User(NEW_NAME));                   // 뉴 브라운, 같은 Id, 업데이트 된 시간
+        User updatedUser = userRepository.save(savedUser);      // 뉴 브라운, 같은 Id, 업데이트 된 시간
 
-        User persistUser = userRepository.findById(updatedUser.getId()).orElseThrow(RuntimeException::new);
+        User persistUser = userRepository.findById(updatedUser.getId()).orElseThrow(RuntimeException::new);     // 뉴 브라운
+        System.out.println("업데이트 전: " + savedUser.getCreateAt());
+        System.out.println("업데이트 전: " + persistUser.getCreateAt());
 
+        assertThat(userRepository.findAll().size()).isEqualTo(1);
         assertThat(persistUser.getName()).isEqualTo(NEW_NAME);
         assertThat(persistUser.getCreateAt()).isEqualTo(savedUser.getCreateAt());
     }
